@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use App\Exports\CustomersExport;
 use App\Exports\CustomersExportFormat;
+use App\Exports\CustomersExportSheets;
 use App\Exports\CustomersExportView;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -24,6 +25,11 @@ class CustomerController extends Controller
     public function export_view()
     {
         return Excel::download(new CustomersExportView(), 'customers.xlsx');
+    }
+
+    public function export_sheets()
+    {
+        return Excel::download(new CustomersExportSheets(), 'customers.xlsx');
     }
 
     public function export_format($format)
