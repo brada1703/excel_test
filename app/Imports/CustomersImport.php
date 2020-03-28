@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Customer;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class CustomersImport implements ToModel
+class CustomersImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -19,5 +20,10 @@ class CustomersImport implements ToModel
             'last_name' => $row[2],
             'email' => $row[3]
         ]);
+    }
+
+    public function headingRow(): int
+    {
+        return 1;
     }
 }
