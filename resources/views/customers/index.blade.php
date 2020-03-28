@@ -10,6 +10,12 @@
         <a href="{{ route('customers.export_format', 'DOMPDF') }}" class="btn btn-primary">Export PDF</a>
         <a href="{{ route('customers.export_sheets') }}" class="btn btn-primary">Export Sheets</a>
         <br>
+        <form action="{{ route('customers.import' )}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="import">
+            <input type="submit" class="btn btn-sm btn-primary" value="Import File">
+        </form>
+        <br>
         <br>
         @include('customers.table', $customers)
     </div>

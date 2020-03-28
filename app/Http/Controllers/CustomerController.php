@@ -7,6 +7,8 @@ use App\Exports\CustomersExport;
 use App\Exports\CustomersExportFormat;
 use App\Exports\CustomersExportSheets;
 use App\Exports\CustomersExportView;
+use App\Imports\CustomersImport;
+use GuzzleHttp\Psr7\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CustomerController extends Controller
@@ -39,5 +41,11 @@ class CustomerController extends Controller
             $extension = 'pdf';
         }
         return Excel::download(new CustomersExport(), 'customers.'.$extension, $format);
+    }
+
+    public function import()
+    {
+        Excel::import(new CustomersImport(), request()->file('import'));
+        return redirect()->route('customers.index')->withMessage('Successfully imported');
     }
 }

@@ -10,4 +10,6 @@ class Customer extends Model
     {
         return $this->hasMany('App\Purchase', 'customer_id', 'id');
     }
+
+    public $fillable = ['first_name', 'last_name', 'email'];
 }
